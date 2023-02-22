@@ -3,7 +3,7 @@
 ## Design
 The `ptor` tool designed to validate the `RPO`, `RTO` values after we do the failover/switchover of the instances. To use `ptor` tool, we need below two instances.
 
-1. `PRIMARY_PGDSN` which points to the Tessell Endpoint
+1. `PRIMARY_PGDSN` which points to the primary endpoint
 2. `REPO_PGDSN` which makes a copy of the messages, which parallel workers execute on the `PRIMARY_PGDSN`.
 We need this `REPO_PGDSN` instance, to validate the data loss `RPO` after we perform the switchover/failover.
 
@@ -17,15 +17,6 @@ Here, we restarted the local `primary` instance manually to mimic the `failover/
 
 
 [![asciicast](https://asciinema.org/a/4D5uoL90P9SBeFJSbeOdJCJ4j.svg)](https://asciinema.org/a/4D5uoL90P9SBeFJSbeOdJCJ4j)
-
-        
-
-### Tessell
-
-Quick test performed on Tessell HA instance, with switchover. The `primary` is running at aws-east-0 and `repo` is running in the local machine. The `ptor` tool is also running from the localhost, and we should run it from the same `VPC` machine to get the proper `RTO`.
-
-
-[![asciicast](https://asciinema.org/a/iILPzoZTpe6hV0dl0o8K8jneL.svg)](https://asciinema.org/a/iILPzoZTpe6hV0dl0o8K8jneL)
 
 ## Installation
 
@@ -49,7 +40,7 @@ Below are the installation steps, which are prepared on RHEL instance. If you ar
 
 4. Download the copy of `ptor` source
 
-        $ git clone git@github.com:dineshtessell/ptor.git
+        $ git clone git@github.com:dineshkumar02/ptor.git
 
 5. Build the `ptor` binary
 
