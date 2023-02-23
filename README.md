@@ -17,6 +17,21 @@ Here, we restarted the local `primary` instance manually to mimic the `failover/
 
 [![asciicast](https://asciinema.org/a/2MRLVcmL2cm7V4eWCtM9rj0Yf.svg)](https://asciinema.org/a/2MRLVcmL2cm7V4eWCtM9rj0Yf)
 
+
+## Demo
+All the demos are done with a sync replica among the nodes.
+Also, all the nodes are in the same network to avoid any latencies.
+
+
+
+[Ptor pg_auto_failover](https://youtu.be/_0vhXn0HbWU)
+
+[Ptor Stolon](https://youtu.be/SDriI00HNbM)
+
+[Ptor Patroni, HaProxy](https://youtu.be/NoDMljx8_Q0)
+
+
+
 ## Installation
 
 Below are the installation steps, which are prepared on RHEL instance. If you are using debain flavour, then use the platform specific package tools like `apt-get` or `brew` to install the below components.
