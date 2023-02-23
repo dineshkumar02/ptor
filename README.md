@@ -15,8 +15,7 @@ Quick test performed between from the two local instance, where primary and repo
 
 Here, we restarted the local `primary` instance manually to mimic the `failover/switchover`.
 
-
-[![asciicast](https://asciinema.org/a/4D5uoL90P9SBeFJSbeOdJCJ4j.svg)](https://asciinema.org/a/4D5uoL90P9SBeFJSbeOdJCJ4j)
+[![asciicast](https://asciinema.org/a/2MRLVcmL2cm7V4eWCtM9rj0Yf.svg)](https://asciinema.org/a/2MRLVcmL2cm7V4eWCtM9rj0Yf)
 
 ## Installation
 
