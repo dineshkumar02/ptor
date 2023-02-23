@@ -1,5 +1,3 @@
-
-
 ## Design
 The `ptor` tool designed to validate the `RPO`, `RTO` values
 after we do the failover/switchover of the postgresql instances.
