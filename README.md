@@ -14,7 +14,7 @@ We need this `REPO_PGDSN` instance, to validate the data loss `RPO` after we per
 ## Quick Test
 
 ### Local
-Quick test performed between from the two local instance, where primary and repo instances are running local. The `ptor` tool is also running local.
+Quick test performed between the two local instance, where primary and repo instances are running local. The `ptor` tool is also running local.
 
 Here, we restarted the local `primary` instance manually to mimic the `failover/switchover`.
 
