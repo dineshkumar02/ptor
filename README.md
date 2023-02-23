@@ -16,7 +16,7 @@ We need this `REPO_PGDSN` instance, to validate the data loss `RPO` after we per
 ### Local
 Quick test performed between the two local instance, where primary and repo instances are running local. The `ptor` tool is also running local.
 
-Here, we restarted the local `primary` instance manually to mimic the `failover/switchover`.
+Here, we restarted the local `primary` instance to mimic the `failover/switchover`.
 
 [![asciicast](https://asciinema.org/a/2MRLVcmL2cm7V4eWCtM9rj0Yf.svg)](https://asciinema.org/a/2MRLVcmL2cm7V4eWCtM9rj0Yf)
 
