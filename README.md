@@ -1,7 +1,12 @@
 
 
 ## Design
-The `ptor` tool designed to validate the `RPO`, `RTO` values after we do the failover/switchover of the instances. To use `ptor` tool, we need below two instances.
+The `ptor` tool designed to validate the `RPO`, `RTO` values
+after we do the failover/switchover of the postgresql instances.
+
+This tool also helpful to evaluate the cloud providers `RPO`, `RTO` and `SLA`.
+
+To use `ptor` tool, we need below two instances.
 
 1. `PRIMARY_PGDSN` which points to the primary endpoint
 2. `REPO_PGDSN` which makes a copy of the messages, which parallel workers execute on the `PRIMARY_PGDSN`.
