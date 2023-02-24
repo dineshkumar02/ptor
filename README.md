@@ -116,5 +116,3 @@ Below are the installation steps, which are prepared on RHEL instance. If you ar
 | --async-repo-mode      | All `primary` events will get in sync to `repo` asynchronously. This improves more data generation on the `primary` side. |
 | --rto-conn-timeout           | `Primary` dns connection timeout value. This helps in calculating the `RTO` |
 | --check-primary-latency      | Check network connectivity latency between `ptor` and  `primary` dns |
-
-
