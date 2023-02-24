@@ -1,31 +1,29 @@
 ## Design
-The `ptor` tool designed to validate the `RPO`, `RTO` values
-after we do the failover/switchover of the postgresql instances.
+The `ptor` tool is designed to validate the `RPO`, `RTO` of a PostgreSQL HA instance. By using this tool, we can put some load into the primary instance, which will get replicated to it's secondary.
 
-This tool also helpful to evaluate the cloud providers `RPO`, `RTO` and `SLA`.
+While the data loading happens, we can either turn off the primary or it's vm instance to trigger the underlying `auto failover` system. Once the `auto failover` happens, `ptor` tool will evaluate the `RPO(Data Loss)` and `RTO(Recovery Time)` of the HA system.
+
 
 To use `ptor` tool, we need below two instances.
 
 1. `PRIMARY_PGDSN` which points to the primary endpoint
-2. `REPO_PGDSN` which makes a copy of the messages, which parallel workers execute on the `PRIMARY_PGDSN`.
-We need this `REPO_PGDSN` instance, to validate the data loss `RPO` after we perform the switchover/failover.
+2. `REPO_PGDSN` which makes a copy of the transactions, which parallel workers execute on the `PRIMARY_PGDSN`.
+We need this `REPO_PGDSN` instance, to validate the data  after we trigger the failover/switchover.
 
 ![](./ptor.png)
 ## Quick Test
 
 ### Local
-Quick test performed between the two local instance, where primary and repo instances are running local. The `ptor` tool is also running local.
-
-Here, we restarted the local `primary` instance to mimic the `failover/switchover`.
+Quick test performed between the two local instance, where primary and repo instances are in `sync streaming` replication mode. In this demo, we restarted the local `primary` instance to mimic the `failover/switchover`.
 
 [![asciicast](https://asciinema.org/a/2MRLVcmL2cm7V4eWCtM9rj0Yf.svg)](https://asciinema.org/a/2MRLVcmL2cm7V4eWCtM9rj0Yf)
 
 
-## Demo
-All the demos are done with a sync replica between the primary and secondary nodes. Put all the nodes including `ptor` in the same network. 
+## Other Demos
+All the demos are done with a `sync streaming` replication between the primary and secondary nodes. All the instances are configured to be in the same network.
 
 ### pg_auto_failover
-Configure `PRIMARY_PGDSN` as multi host connection string as like below.
+Configure `PRIMARY_PGDSN` as a `multi host` connection string as like below.
 
         host=host1,host2 port=5432,5432 user=postgres password=password target_session_attrs=read-write
 
