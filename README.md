@@ -22,16 +22,52 @@ Here, we restarted the local `primary` instance to mimic the `failover/switchove
 
 
 ## Demo
-All the demos are done with a sync replica among the nodes.
-Also, all the nodes are in the same network to avoid any latencies.
+All the demos are done with a sync replica between the primary and secondary nodes. Put all the nodes including `ptor` in the same network. 
+
+### pg_auto_failover
+Configure `PRIMARY_PGDSN` as multi host connection string as like below.
+
+        host=host1,host2 port=5432,5432 user=postgres password=password target_session_attrs=read-write
+
+[Demo Ptor pg_auto_failover](https://youtu.be/_0vhXn0HbWU)
+
+### Stolon
+Configure `PRIMARY_PGDSN` as to point the `stolon proxy`.
+
+[Demo Ptor Stolon](https://youtu.be/SDriI00HNbM)
+
+### Patroni
+Configure `PRIMARY_PGDSN` as to point the `haproxy`.
+Below is the `haproxy.cfg` used for this demo.
+
+        global
+        maxconn 100
+
+        defaults
+        log global
+        mode tcp
+        retries 1
+        timeout client 30m
+        timeout connect 1s
+        timeout server 30m
+        timeout check 1s
+
+        listen stats
+        mode http
+        bind *:2361
+        stats enable
+        stats uri /
+
+        listen production
+        bind 172.31.46.52:2360
+        option httpchk OPTIONS/master
+        http-check expect status 200
+        default-server inter 1s fall 1 rise 1 on-marked-down shutdown-sessions
+        server postgresql_192.168.56.104_5432 172.31.34.9:5432 maxconn 100 check port 8008
+        server postgresql_192.168.56.105_5432 172.31.43.176:5432 maxconn 100 check port 8008
 
 
-
-[Ptor pg_auto_failover](https://youtu.be/_0vhXn0HbWU)
-
-[Ptor Stolon](https://youtu.be/SDriI00HNbM)
-
-[Ptor Patroni, HaProxy](https://youtu.be/NoDMljx8_Q0)
+[Demo Ptor Patroni, HaProxy](https://youtu.be/NoDMljx8_Q0)
 
 
 
