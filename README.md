@@ -92,8 +92,6 @@ Below are the installation steps, which are prepared on RHEL instance. If you ar
 4. Download the copy of `ptor` source
 
         $ git clone git@github.com:dineshkumar02/ptor.git
-OR
-        $ wget https://github.com/dineshkumar02/ptor/archive/refs/heads/main.zip
 
 5. Build the `ptor` binary
 
