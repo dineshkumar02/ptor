@@ -13,6 +13,10 @@ Version=0.1.0
 all: build
 build: 
 		$(GOBUILD) -o $(BINARY_NAME) -v -ldflags="-X 'main.Version=${Version}' -X 'main.GitCommit=${COMMIT}' -X 'main.CommitDate=${DATE}'"
+
+linux:
+		GOOS=linux $(GOBUILD) -o $(BINARY_NAME) -v -ldflags="-X 'main.Version=${Version}' -X 'main.GitCommit=${COMMIT}' -X 'main.CommitDate=${DATE}'"
+
 test: 
 		$(GOTEST) -v ./...
 clean: 
