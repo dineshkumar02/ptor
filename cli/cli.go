@@ -18,4 +18,8 @@ type CliArgs struct {
 	AsyncRepoMode      bool `arg:"--async-repo-mode,env:ASYNC_REPO_MODE" default:"true"`
 
 	CheckPrimaryLatency bool `arg:"--check-primary-latency,env:CHECK_PRIMARY_LATENCY" default:"false"`
+	ValidationDelay     int  `arg:"--validation-delay,env:VALIDATION_DELAY" default:"0"`
+
+	Help  bool `arg:"--help" default:"false"`
+	About bool `arg:"--about" default:"false"`
 }

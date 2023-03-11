@@ -38,6 +38,11 @@ func RTO(lost_err_time time.Time) time.Duration {
 		}
 	}
 
+	// If there is a validation delay specified, then add that delay to the RTO
+	if global.CliOpts.ValidationDelay > 0 {
+		*fresh_conn_time = fresh_conn_time.Add(time.Duration(global.CliOpts.ValidationDelay) * time.Second)
+	}
+
 	// Calculate RTO
 	return fresh_conn_time.Sub(lost_err_time)
 }

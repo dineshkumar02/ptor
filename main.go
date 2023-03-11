@@ -18,9 +18,20 @@ import (
 
 var args cli.CliArgs
 
+var Version string
+var GitCommit string
+var CommitDate string
+
 func init() {
 	arg.MustParse(&args)
 	global.CliOpts = args
+
+	if args.About {
+		fmt.Println("Version: ", Version)
+		fmt.Println("Git Commit: ", GitCommit)
+		fmt.Println("Git Commit Date: ", CommitDate)
+		os.Exit(0)
+	}
 
 	if args.Init {
 		err := db.InitSchema()

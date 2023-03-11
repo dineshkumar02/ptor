@@ -70,7 +70,7 @@ func Run() {
 
 		select {
 		case <-task_done:
-			fmt.Println(color.HiBlueString("\nDo the failover/switchover from Tessell UI"))
+			fmt.Println(color.HiBlueString("\nDo the failover/switchover"))
 			s.Prefix = color.HiCyanString("Data loading...")
 			s.Start()
 			//util.StopTasks()
@@ -114,8 +114,13 @@ func Run() {
 			break
 		}
 	}
-	fmt.Println(color.HiGreenString("Checking DNS Availability..."))
+	fmt.Println(color.HiGreenString("Checking Connection Availability..."))
 	serviceAvailable := calc.ServiceAvailable(error_time)
+
+	if global.CliOpts.ValidationDelay > 0 {
+		fmt.Println(color.HiGreenString(fmt.Sprintf("Sleeping %d seconds validation delay...", global.CliOpts.ValidationDelay)))
+		time.Sleep(time.Duration(global.CliOpts.ValidationDelay) * time.Second)
+	}
 
 	// Calculate RTO
 	fmt.Println(color.HiGreenString("Checking RTO..."))
