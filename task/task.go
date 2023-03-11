@@ -151,7 +151,7 @@ func Run() {
 	w := tabwriter.NewWriter(buf, 0, 0, 1, ' ', 0)
 	fmt.Fprintln(w, "\t", "")
 	fmt.Fprintln(w, "SLA\t", fmt.Sprintf("%.5f", percent.PercentOf(86400*1000-int(rto.Milliseconds()), 86400*1000)))
-	fmt.Fprintln(w, "DNS Available\t", serviceAvailable)
+	fmt.Fprintln(w, "Service Available\t", serviceAvailable)
 	fmt.Fprintln(w, "RTO\t", rto)
 	fmt.Fprintln(w, "RPO\t", rpo)
 	fmt.Fprintln(w, "Quick Data Loss Check (bytes)\t", data_los_bytes)

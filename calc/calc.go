@@ -21,7 +21,6 @@ func ServiceAvailable(lost_err_time time.Time) time.Duration {
 		}
 	}
 
-	// Calculate RTO
 	return service_conn_time.Sub(lost_err_time)
 }
 
