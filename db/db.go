@@ -266,9 +266,7 @@ func CloseRepoPool() error {
 	return pool.RepoPool.CloseRepoPool()
 }
 
-func CheckPrimaryConnTime() (*time.Time, error) {
-
-	ctx, _ := context.WithTimeout(context.Background(), time.Duration(global.CliOpts.RTOTimeout)*time.Millisecond)
+func CheckPrimaryConnTime(ctx context.Context) (*time.Time, error) {
 	conn, err := pgx.Connect(ctx, global.CliOpts.PrimaryPgDsn)
 	if err != nil {
 		return nil, err
