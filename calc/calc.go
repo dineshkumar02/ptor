@@ -1,7 +1,9 @@
 package calc
 
 import (
+	"context"
 	"fmt"
+	"os"
 	"ptor/db"
 	"ptor/global"
 	"ptor/repo"
@@ -12,12 +14,22 @@ func ServiceAvailable(lost_err_time time.Time) time.Duration {
 	var service_conn_time *time.Time
 	var err error
 	// Make a fresh connection to primary/read-write postgres
+
+	ctx, _ := context.WithTimeout(context.Background(), time.Duration(global.CliOpts.RTOTimeout)*time.Millisecond)
+
 	for {
-		service_conn_time, err = db.CheckPrimaryConnTime()
+
+		service_conn_time, err = db.CheckPrimaryConnTime(ctx)
 		if err != nil {
 			//fmt.Println("Error while making new primary read-write connection: ", err)
 		} else {
 			break
+		}
+		select {
+		case <- ctx.Done():
+			fmt.Println("Timed out waiting for leader recovery, last connection attempt error: ", err.Error())
+			os.Exit(1)
+		default:
 		}
 	}
 
